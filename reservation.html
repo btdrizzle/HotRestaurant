@@ -30,71 +30,88 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 
-<div class="container-fluid">
-    <div class="container">
-        <div class="jumbotron bg-light">
-            <h2 class="display-4 text-center">Hot Restaurant</h2>
-            <hr class="my-4">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="jumbotron bg-light">
+                <h2 class="display-4 text-center">Hot Restaurant</h2>
+                <hr class="my-4">
+                <p>
+                    <h2 class="text-center">Make Your Reservation</h2>
+                </p>
+                <div class="text-center">
+                    <a href="/table">
+                        <button class="btn btn-lg btn-danger">
+                            <span class="fa fa-list-alt"></span> View Table</button>
+                    </a>
+                    <a href="/">
+                        <button class="btn btn-lg btn-default">
+                            <span class="fa fa-home"></span>
+                        </button>
+                    </a>
+                </div>
+            </div>
             <p>
-                <h2 class="text-center">Make Your Reservation</h2>
+                <h2>Table Reservation</h2>
             </p>
-            <div class="text-center">
-                <a href="/reserve">
-                    <button class="btn btn-lg btn-danger">
-                        <span class="fa fa-list-alt"></span> View Table</button>
-                </a>
-                <a href="/">
-                    <button class="btn btn-lg btn-default">
-                        <span class="fa fa-home"></span>
-                    </button>
-                </a>
-            </div>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <textarea class="form-control" id="name" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <textarea class="form-control" id="phone" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="ID">Unique ID</label>
+                    <textarea class="form-control" id="ID" rows="1"></textarea>
+                </div>
+                <button type="submit" id="submit" class="btn btn-primary mb-2">Submit</button>
+            </form>
         </div>
-        <p><h2>Table Reservation</h2></p>
-        <form>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <textarea class="form-control" id="name" rows="1"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <textarea class="form-control" id="phone" rows="1"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
-            </div>
-            <div class="form-group">
-                <label for="ID">Unique ID</label>
-                <textarea class="form-control" id="ID" rows="1"></textarea>
-            </div>
-            <button type="submit" id="submit" class="btn btn-primary mb-2">Submit</button>
-        </form>
     </div>
-</div>
+    <footer class="footer mt-4">
+        <div class="container">
+            <p>Control Panel</p>
+            <p>
+                <a href="#" id="clear">Clear Table</a> |
+                <a href="/api/reserved" id="API">API Table Link</a> |
+                <a href="/api/waitlist" id="">API Wait List</a>
+        </div>
+    </footer>
 
-<script type="text/javascript">
-    // Question: What does this code do?
-    $("#submit").on("click", function(event) {
-      event.preventDefault();
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#submit").on("click", function (event) {
+            event.preventDefault();
 
-      var newTable = {
-        name: $("#name").val().trim(),
-        phoneNum: $("#phone").val().trim(),
-        eMail: $("#email").val().trim(),
-        uId: $("#ID").val().trim()
-      };
+            var newTable = {
+                name: $("#name").val().trim(),
+                phoneNum: $("#phone").val().trim(),
+                eMail: $("#email").val().trim(),
+                uId: $("#ID").val().trim()
+            };
 
-      // Question: What does this code do??
-      $.post("/api/reservetable", newTable)
-        .then(function(data) {
-          console.log(data);
-          alert("Adding table...");
+            // Question: What does this code do??
+            $.post("/api/reservetable", newTable)
+                .then(function (data) {
+                    console.log(data);
+                    alert("Adding table...");
+                });
+            $('#name').val("");
+            $('#phone').val("");
+            $('#email').val("");
+            $('#ID').val("");
+
         });
 
-    });
 
-  </script>
+    </script>
 
 </body>
+
 </html>
