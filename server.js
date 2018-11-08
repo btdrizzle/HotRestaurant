@@ -29,11 +29,11 @@ app.get("/table", function(req, res) {
 //Routes to get all data of each list
 //Entire reservations list
 app.get("/api/reserved", function(req, res) {
-    return res.json(reservations);
+    return res.json(reservations.reservations);
 });
 //Entire waitlist
 app.get("/api/waitlist", function(req, res) {
-    return res.json(waitList);
+    return res.json(reservations.waitList);
 });
 //Search for specific reservation
 //app.get("/api/", function(req,res) {
@@ -55,3 +55,8 @@ app.post('/api/reservetable', function(req,res) {
         res.json(newTable);
     }
 });
+app.post('/api/cleartables', function(req,res) {
+    reservations.reservations.length = 0;
+    reservations.waitList.length = 0;
+    res.send("The reservations have all been cleared!")
+})
