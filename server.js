@@ -2,7 +2,6 @@
 // =============================================================
 const express = require("express");
 const reservations = require('./hotrestaurant');
-const waitList = require('./hotrestaurant');
 const path = require('path');
 
 // Sets up the Express App
@@ -48,7 +47,7 @@ app.post('/api/reservetable', function(req,res) {
     console.log(newTable);
 
     //Push to either reservations or wait list
-    if(reservations[4]) {
+    if(reservations.reservations[4]) {
         reservations.waitList.push(newTable);
         res.json(newTable);
     }else{
