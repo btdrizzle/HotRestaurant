@@ -49,10 +49,10 @@ app.post('/api/reservetable', function(req,res) {
 
     //Push to either reservations or wait list
     if(reservations[4]) {
-        waitList.push(newTable);
+        reservations.waitList.push(newTable);
         res.json(newTable);
     }else{
-        reservations.push(newTable);
+        reservations.reservations.push(newTable);
         res.json(newTable);
     }
 });
