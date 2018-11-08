@@ -3,6 +3,7 @@
 const express = require("express");
 const reservations = require('./hotrestaurant');
 const waitList = require('./hotrestaurant');
+const path = require('path');
 
 // Sets up the Express App
 // =============================================================
